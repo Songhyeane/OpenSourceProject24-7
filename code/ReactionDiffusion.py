@@ -41,6 +41,13 @@ import matplotlib.pyplot as plt
 import argparse
 import  cv2
 
+from PIL import Image
+import glob
+import os
+import natsort
+
+
+
 try:
     # python2
     input_function = raw_input
@@ -270,10 +277,12 @@ if __name__ == "__main__":
 
     #set initial conditions
 
-    edges =  get_outline('../resource/image2.png')
+    #file_path = input("file_path:")
+
+    #edges =  get_outline(file_path)
     size = 200
 
-    edges = edges.astype('float64')
+    #edges = edges.astype('float64')
     U = np.zeros((size, size))
     V = np.zeros((size, size))
 
@@ -283,18 +292,29 @@ if __name__ == "__main__":
 
     #sets initialization of single or double squares, or completely random
     if params["seed"] == "single":
+        u += 1.0
         r = 20
         U[size//2-r:size//2+r,size//2-r:size//2+r] = 0.50
         V[size//2-r:size//2+r,size//2-r:size//2+r] = 0.25
+
+        initial_matrices = (U, V)
+
     elif params["seed"] == "dual":
+        u += 1.0
         r = 15
         U[size//4-r:size//4+r,size//4-r:size//4+r] = 0.50
         V[size//4-r:size//4+r,size//4-r:size//4+r] = 0.25
         U[3*size//4-r:3*size//4+r,3*size//4-r:3*size//4+r] = 0.50
         V[3*size//4-r:3*size//4+r,3*size//4-r:3*size//4+r] = 0.25
 
+        initial_matrices = (U, V)
+
     else: #seed with random noise
         # if not model == 'GM':
+        file_path = input("file_path:")
+        edges = get_outline(file_path)
+        edges = edges.astype('float64')
+
         edges_U = edges
         edges_V = edges
         edges_U[edges_U != 0] = 0.75
@@ -302,11 +322,25 @@ if __name__ == "__main__":
 
         edges_U += (0.01 + 0.01 * (np.random.random((size, size)) * 2 - 1))
         edges_V += (0.01 + 0.01 * (np.random.random((size, size)) * 2 - 1))
+        initial_matrices = (edges_U, edges_V)
 
-
-    initial_matrices = (edges_U,edges_V)
 
     #RUN SIM
     makeImg(v,"initial_v",params["myCmap"],setEdge=params["edgeMax"])
     u,v = modelFunc(params,initial_matrices)
     makeImg(v,"final_v",params["myCmap"],setEdge=params["edgeMax"])
+
+    image_files = os.listdir('simulation_output_images')
+
+    image_files = natsort.natsorted(image_files)  # 파일들을 순서대로 정렬 (필요한 경우)
+
+    image_files = image_files[2:]
+
+    for idx, img_names in enumerate(image_files):
+        image_files[idx] = 'simulation_output_images/' + image_files[idx]
+
+    # 이미지들을 열고, 리스트에 저장
+    images = [Image.open(image) for image in image_files]
+
+    # 첫 번째 이미지를 기준으로 GIF 생성 및 나머지 이미지 추가
+    images[0].save('output.gif', save_all=True, append_images=images[1:], optimize=False, duration=5, loop=0)
