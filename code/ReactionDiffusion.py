@@ -210,7 +210,7 @@ def setModelParams(model):
         params = pchoices[pattern]
 
         #Set initial seed pattern for GS
-        seeds = ["single","dual","noise"]
+        seeds = ["single","dual","custom"]
         seed = ""
         while not seed:
             print("Initial seeding choices: " + ", ".join(seeds))
