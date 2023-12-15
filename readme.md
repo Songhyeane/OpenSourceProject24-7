@@ -16,6 +16,33 @@ This technique opens up a multitude of possibilities for creative and scientific
 Moreover, the adaptability of the Canny edge detector allows for its application across various image types and qualities, making it a versatile tool in both artistic and scientific endeavors. By leveraging the human contour as a seed point, we can explore a fascinating intersection of art, science, and technology.
 
 ------
+### 1... Set pattern generating method
+```python
+FN [FitzHugh-Nagumo]
+GM [Gierer-Meinhardt]
+GS [Gray-Scott]
+(choose one): GS
+```
+### 2... Set reaction-diffusion coefficients
+```python
+Gray-Scott model selected
+--- Pattern choices ---
+pick 1: solitons, coral, maze, waves, flicker, worms
+Select reaction-diffusion model: worms
+```
+### 3... Set seeding method(custom: custom image with canny detector)
+```python
+Initial seeding choices: single, dual, custom
+initial seeding choice: custom
+```
+### 4... Generate animation during solving PDE
+```python
+Running simulation with 2000 timesteps.
+Movie mode set to ON
+250 movie images will be produced
+file_path:../resource/image2.png
+```
+------
 ### Original Image
 ![image](https://github.com/Songhyeane/OpenSourceProject24-7/assets/50310635/cf2bda74-bf24-41cf-b3cf-14c9a9821271)
 
