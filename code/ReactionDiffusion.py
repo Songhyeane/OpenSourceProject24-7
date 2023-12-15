@@ -171,8 +171,8 @@ def setModelParams(model):
         size = 200
         dx = 2./size
         dt = 0.9 * dx**2/2
-        params = {"Du":6e-3, "Dv":2.8e-4, "tau":0.1, "k":-0.005,"myCmap":plt.cm.PRGn,"edgeMax":False,"dt":dt,"dx":dx,"seed":"noise"}
-        #  params = {"Du":5e-3, "Dv":2.8e-4, "tau":0.1, "k":-0.005,"myCmap":plt.cm.PRGn,"edgeMax":False,"dt":dt,"dx":dx,"seed":"noise"}
+        # params = {"Du":6e-3, "Dv":2.8e-4, "tau":0.1, "k":-0.005,"myCmap":plt.cm.PRGn,"edgeMax":False,"dt":dt,"dx":dx,"seed":"noise"}
+        params = {"Du":5e-3, "Dv":2.8e-4, "tau":0.1, "k":-0.005,"myCmap":plt.cm.PRGn,"edgeMax":False,"dt":dt,"dx":dx,"seed":"noise"}
     elif model == "GM":
         print("Gierer-Meinhardt model selected")
         modelFunc = GM
@@ -188,7 +188,7 @@ def setModelParams(model):
                 {"Du":0.19, "Dv":0.05, "F":0.06, "k":0.062,"myCmap":plt.cm.cubehelix,"edgeMax":False,"dt":1,"dx":1},
                 {"Du":0.12, "Dv":0.08, "F":0.02, "k":0.05,"myCmap":plt.cm.cubehelix,"edgeMax":True,"dt":1,"dx":1},
                 {"Du":0.16, "Dv":0.08, "F":0.02, "k":0.055,"myCmap":plt.cm.cubehelix,"edgeMax":True,"dt":1,"dx":1},
-                {"Du":0.16, "Dv":0.08, "F":0.054, "k":0.064,"myCmap":plt.cm.cubehelix,"edgeMax":False,"dt":1,"dx":1}]
+                {"Du":0.1788, "Dv":0.09, "F":0.0644, "k":0.100,"myCmap":plt.cm.cubehelix,"edgeMax":False,"dt":1,"dx":1}]
 
         pchoices = dict(zip(pnames,pvals))
         pattern = ""
@@ -279,7 +279,7 @@ if __name__ == "__main__":
 
     u,v = U[1:-1,1:-1], V[1:-1,1:-1]
 
-    u+=1.0
+    #u+=1.0
 
     #sets initialization of single or double squares, or completely random
     if params["seed"] == "single":
@@ -297,22 +297,14 @@ if __name__ == "__main__":
         # if not model == 'GM':
         edges_U = edges
         edges_V = edges
-        edges_U[edges_U != 0] = 0.5
-        edges_V[edges_V != 0] = 0
+        edges_U[edges_U != 0] = 0.75
+        #edges_V[:] = 0.25
 
-        edges_u, edges_v = edges_U[1:-1, 1:-1], edges_V[1:-1, 1:-1]
-
-        #u-=0.75
-        u+=edges_u
-        v+=edges_v
-
-        # else:
-        #     #add small amount of noise everywhere
-        #     u += (0.01 + 0.01*(np.random.random((size-2,size-2))*2-1))
-        #     v += (0.01 + 0.01*(np.random.random((size-2,size-2))*2-1))
+        edges_U += (0.01 + 0.01 * (np.random.random((size, size)) * 2 - 1))
+        edges_V += (0.01 + 0.01 * (np.random.random((size, size)) * 2 - 1))
 
 
-    initial_matrices = (U,V)
+    initial_matrices = (edges_U,edges_V)
 
     #RUN SIM
     makeImg(v,"initial_v",params["myCmap"],setEdge=params["edgeMax"])
