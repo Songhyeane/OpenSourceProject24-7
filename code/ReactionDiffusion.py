@@ -1,27 +1,5 @@
 #!/usr/bin/env python
 
-"""
-Jens Luebeck
-UC San Diego, Bioinformatics & Systems Biology
-jluebeck@ucsd.edu
-
-Simulates Gray-Scott reaction diffusion model and can produce images for use in animations
-
-Example usage:
-
-    python ReactionDiffusion.py -o my_simulation --moviemode -n 10000
-
-    This will output files with the prefix "OutputPrefix" into a directory of the same name, and as
-the moviemode flag is set, it will store 250 images for animation. User will be prompted for model type
-
-Example usage 2:
-
-    python ReactionDiffusion.py -o my_simulation2 -m GM -n 5000
-
-    Instead uses the Gierer-Meinhardt activator-inhibitor model (-gm).
-
-"""
-
 #Other notes:
 
 #Du: Diffusivity of U
@@ -40,13 +18,10 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import argparse
 import  cv2
-
 from PIL import Image
 import glob
 import os
 import natsort
-
-
 
 try:
     # python2
