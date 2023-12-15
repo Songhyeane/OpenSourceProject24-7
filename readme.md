@@ -23,7 +23,6 @@ Moreover, the adaptability of the Canny edge detector allows for its application
 <p float="center">
   <img src="https://github.com/Songhyeane/OpenSourceProject24-7/assets/50310635/f9e43727-0168-42d7-b297-6397a493a1c7" width="400" />
 </p>
-![KakaoTalk_20231215_192257586](https://github.com/Songhyeane/OpenSourceProject24-7/assets/50310635/f9e43727-0168-42d7-b297-6397a493a1c7)
 
 ## Installation
 - Ensure Python is installed on your system.
