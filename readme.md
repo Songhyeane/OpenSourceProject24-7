@@ -1,7 +1,10 @@
-# Reaction-Diffusion Simulation README
+# Reaction-Diffusion Simulation (Work In Process)
 
 ## Overview
-This Python script simulates various reaction-diffusion models, with a focus on the Gray-Scott model. It can generate images and animations to visualize the complex patterns formed by these models.
+<p float="center">
+This Python script simulates various reaction-diffusion models, with a focus on the Gray-Scott model. It can generate images and animations to visualize the complex patterns formed by these models. 
+  <img src="https://github.com/Songhyeane/OpenSourceProject24-7/assets/50310635/a74d5493-d6ad-47f4-ade5-b8e3ea2a1d76" width="400" />
+</p>
 
 ## Demo
 We have the capability to utilize a Canny edge detector to compute the contour of a human figure and apply it as a seed point in various computational simulations or image processing tasks. The Canny edge detector, a widely used algorithm in the field of computer vision, excels in identifying the edges and contours within an image by detecting areas of rapid intensity change.
@@ -12,6 +15,15 @@ This technique opens up a multitude of possibilities for creative and scientific
 
 Moreover, the adaptability of the Canny edge detector allows for its application across various image types and qualities, making it a versatile tool in both artistic and scientific endeavors. By leveraging the human contour as a seed point, we can explore a fascinating intersection of art, science, and technology.
 
+------
+### Original Image
+![image](https://github.com/Songhyeane/OpenSourceProject24-7/assets/50310635/cf2bda74-bf24-41cf-b3cf-14c9a9821271)
+
+### Generated Pattern
+<p float="center">
+  <img src="https://github.com/Songhyeane/OpenSourceProject24-7/assets/50310635/f9e43727-0168-42d7-b297-6397a493a1c7" width="400" />
+</p>
+![KakaoTalk_20231215_192257586](https://github.com/Songhyeane/OpenSourceProject24-7/assets/50310635/f9e43727-0168-42d7-b297-6397a493a1c7)
 
 ## Installation
 - Ensure Python is installed on your system.
@@ -58,8 +70,10 @@ Run the simulation with the set parameters and initial conditions for the desire
 ### Step 5: Generate Output Images
 The script will generate images at specified intervals, visualizing the pattern evolution.
 
-### Step 6: Compile Images into an Animation (Optional)
-If in movie mode, compile these images into an animation using a video editing tool.
-
-## Output
+## Output (Simple boundary condition)
 The script generates a series of images representing the state of the system at various timesteps.
+
+<p float="left">
+  <img src="https://github.com/Songhyeane/OpenSourceProject24-7/assets/50310635/c3efad71-f63a-4659-8fbe-8d5eaeb38a5e" width="400" />
+  <img src="https://github.com/Songhyeane/OpenSourceProject24-7/assets/50310635/8fad7338-9fc5-40b3-9f0b-e1f032eaaa0b" width="400" /> 
+</p>
